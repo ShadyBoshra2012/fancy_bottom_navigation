@@ -25,7 +25,7 @@ class FancyBottomNavigation extends StatefulWidget {
       this.barBackgroundColor})
       : assert(onTabChangedListener != null),
         assert(tabs != null),
-        assert(tabs.length > 1 && tabs.length < 5);
+        assert(tabs.length > 1 && tabs.length <= 5);
 
   final Function(int position) onTabChangedListener;
   final Color circleColor;
@@ -117,7 +117,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
       alignment: Alignment.bottomCenter,
       children: <Widget>[
         Container(
-          height: BAR_HEIGHT,
+          height: BAR_HEIGHT + 5,
           decoration: BoxDecoration(color: barBackgroundColor, boxShadow: [
             BoxShadow(
                 color: Colors.black12, offset: Offset(0, -1), blurRadius: 8)
@@ -153,7 +153,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 15),
                 child: FractionallySizedBox(
-                  widthFactor: 1 / widget.tabs.length,
+                  widthFactor: 1 / (widget.tabs.length - 1),
                   child: GestureDetector(
                     onTap: widget.tabs[currentSelected].onclick,
                     child: Stack(
@@ -172,7 +172,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                                       width: CIRCLE_SIZE + CIRCLE_OUTLINE,
                                       height: CIRCLE_SIZE + CIRCLE_OUTLINE,
                                       decoration: BoxDecoration(
-                                          color: Colors.white,
+                                          color: Colors.transparent,
                                           shape: BoxShape.circle,
                                           boxShadow: [
                                             BoxShadow(
