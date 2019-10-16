@@ -38,6 +38,8 @@ class FancyBottomNavigation extends StatefulWidget {
 
   final Key key;
 
+  Function setPage;
+
   @override
   FancyBottomNavigationState createState() => FancyBottomNavigationState();
 }
@@ -96,6 +98,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   void initState() {
     super.initState();
     _setSelected(widget.tabs[widget.initialSelection].key);
+    widget.setPage = setPage;
   }
 
   _setSelected(UniqueKey key) {
